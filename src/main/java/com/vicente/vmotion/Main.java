@@ -17,16 +17,13 @@ import java.net.Socket;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+
 public class Main extends Application {
     public BorderPane root;
-    String direccionServidor = "localhost";
-    int puerto = 1234;
-
 
     @Override
     public void start(Stage stage) throws IOException {
-
-        if (MainManagement.connectServer()){
+        if (MainManagement.connectServer()) {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Views/LoginView.fxml")));
             root = loader.load();
             Scene scene = new Scene(root, 1200, 800);
@@ -42,6 +39,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
 }

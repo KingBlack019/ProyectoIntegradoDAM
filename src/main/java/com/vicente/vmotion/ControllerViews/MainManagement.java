@@ -17,73 +17,48 @@ import java.util.Objects;
 public class MainManagement {
     static String direccionServidor = "localhost";
     static int puerto = 1234;
-    private Socket userSocket;
-    private BufferedReader entrada;
-    private PrintWriter salida;
+    private static Socket userSocket;
+    private static BufferedReader entrada;
+    private static PrintWriter salida;
 
-
-    public MainManagement(Socket userSocket) {
-        this.userSocket = userSocket;
-    }
-
-    public Socket getUserSocket() {
-        return userSocket;
-    }
-
-    public void setUserSocket(Socket userSocket) {
-        this.userSocket = userSocket;
-    }
-
-    public static void showView(Main main, String viewName) {
-        try {
-            System.out.println(main.getClass().getResource("Views/" + viewName + ".fxml"));
-            FXMLLoader loader = new FXMLLoader(main.getClass().getResource("Views/" + viewName + ".fxml"));
-            Parent view = loader.load();
-
-            // Obtener el controlador y pasarle la referencia a la clase Main
-            Object controller = loader.getController();
-            ((ControllerViewInterface) controller).setMainApp(main);
-
-            // Cambiar la vista al nuevo nodo
-            main.root.getChildren().setAll(view);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    // Constructor privado para evitar instancias innecesarias
+    private MainManagement() {}
 
     public static boolean connectServer() {
-        try (Socket socket = new Socket(direccionServidor, puerto);
+        try {
+            userSocket = new Socket(direccionServidor, puerto);
+            entrada = new BufferedReader(new InputStreamReader(userSocket.getInputStream()));
+            salida = new PrintWriter(userSocket.getOutputStream(), true);
 
-
-             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Conectado al servidor");
-
             return true;
-
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }
 
-    public BufferedReader getEntrada() {
+    public static BufferedReader getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(BufferedReader entrada) {
-        this.entrada = entrada;
+    public static void setEntrada(BufferedReader entrada) {
+        MainManagement.entrada = entrada;
     }
 
-    public PrintWriter getSalida() {
+    public static PrintWriter getSalida() {
         return salida;
     }
 
-    public void setSalida(PrintWriter salida) {
-        this.salida = salida;
+    public static void setSalida(PrintWriter salida) {
+        MainManagement.salida = salida;
     }
 
-    public void enviarDatos(Object o){
-        salida.println(o);
+    public static void enviarDatos(Object o) {
+        if (salida != null) {
+            salida.println(o.toString()); // Convertir el objeto a String antes de enviarlo
+        } else {
+            System.out.println("No hay conexión establecida. No se pueden enviar datos.");
+        }
     }
 }
