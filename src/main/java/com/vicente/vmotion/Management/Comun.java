@@ -1,5 +1,9 @@
 package com.vicente.vmotion.Management;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -12,5 +16,14 @@ public class Comun {
 
     public LocalDateTime getFechaActualPrecisa(){
         return LocalDateTime.now();
+    }
+
+    public static ObservableList<String> roleChoiceBox(){
+        String[] opcionesArray = {"CONSUMIDOR", "OFERTANTE"};
+        return FXCollections.observableArrayList(opcionesArray);
+    }
+
+    public static void ButtonLoginStyle(Button button){
+        // TODO METER EL MOUSTE ENTERED Y EXITED CON SUS DISEÑOS
     }
 }

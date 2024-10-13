@@ -1,22 +1,18 @@
 package com.vicente.vmotion.ControllerViews;
 
 import com.vicente.vmotion.Main;
+import com.vicente.vmotion.Management.Comun;
 import com.vicente.vmotion.Management.ControllerViewInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Arrays;
+import static com.vicente.vmotion.Management.Comun.roleChoiceBox;
 
 public class LoginViewController implements ControllerViewInterface {
+    @FXML
+    public Button registerButton;
     @FXML
     private ChoiceBox choiceBox;
     @FXML
@@ -34,8 +30,10 @@ public class LoginViewController implements ControllerViewInterface {
     private final String buttonStyle = "-fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 24;";
 
 
+
     @FXML
     private void initialize() {
+
         // Ejemplo de manejo de evento para el botón "Entrar"
         entrarButton.setOnAction(event -> {
             String usuario = usuarioField.getText();
@@ -46,14 +44,19 @@ public class LoginViewController implements ControllerViewInterface {
             if(usuario.toLowerCase().trim().compareTo("a") != 0)
                 mostrarMensaje("Nombre de usuario o contraseña incorrecto");
             else
-                mainApp.showView("MainScreenView"); // Cambiar a la vista principal
+                MainManagement.showView(mainApp, "MainScreenView"); // Cambiar a la vista principal
 
         });
 
-        setChoicheBox();
+        registerButton.setOnAction(actionEvent -> {
+            MainManagement.showView(mainApp, "RegisterView");
+        });
 
+        setChoicheBox();
         entrarButton.setOnMouseEntered(dragEvent -> entrarButton.setStyle("-fx-background-color: lightgreen;"+buttonStyle));
         entrarButton.setOnMouseExited(dragEvent -> entrarButton.setStyle("-fx-background-color: deepskyblue;"+buttonStyle));
+
+
     }
 
     private void mostrarMensaje(String mensaje){
@@ -68,9 +71,7 @@ public class LoginViewController implements ControllerViewInterface {
     }
 
     private void setChoicheBox(){
-        String[] opcionesArray = {"CONSUMIDOR", "OFERTANTE"};
-        ObservableList<String> opciones = FXCollections.observableArrayList(opcionesArray);
-        choiceBox.setItems(opciones);
-        choiceBox.setValue("CONSUMIDOR");
+        choiceBox.setItems(roleChoiceBox());
+        choiceBox.setValue(roleChoiceBox().getFirst());
     }
 }

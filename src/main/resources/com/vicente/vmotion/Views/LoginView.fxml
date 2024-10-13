@@ -30,7 +30,7 @@
             <VBox.margin>
                <Insets bottom="20.0" />
             </VBox.margin></Label>
-         <ChoiceBox fx:id="choicheBox" prefWidth="150.0">
+         <ChoiceBox fx:id="choiceBox" prefWidth="150.0">
             <VBox.margin>
                <Insets left="500.0" />
             </VBox.margin>
@@ -57,14 +57,13 @@
          </PasswordField>
 
             <Button fx:id="entrarButton" prefHeight="51.0" prefWidth="528.0" style="-fx-background-color: deepskyblue; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 24;" text="Entrar" />
-
-            <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="759.0" style="-fx-text-fill: blue; -fx-underline: true; -fx-font-size: 24;" text="Ha olvidado la contraseña?">
+         <Button fx:id="registerButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="35.0" prefWidth="706.0" style="-fx-background-color: transparent; -fx-text-fill: blue; -fx-underline: true; -fx-font-size: 24;" text="Ha olvidado la contraseña?" textAlignment="RIGHT">
             <VBox.margin>
-               <Insets right="20.0" />
+               <Insets left="450.0" />
             </VBox.margin>
             <padding>
-               <Insets right="5.0" />
-            </padding></Label>
+               <Insets right="20.0" />
+            </padding></Button>
         </VBox>
     </center>
 

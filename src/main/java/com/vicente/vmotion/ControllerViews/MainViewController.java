@@ -13,10 +13,16 @@ public class MainViewController implements ControllerViewInterface {
 
     public Button buttonUser;
     public Label bienvenidoLabel;
+    public Label rolLabel;
+    @FXML
+    public Button settingsButton;
     @FXML
     private Button logoutButton;
 
     private Main mainApp;
+
+    private String username;
+    private String userRol;
 
     @Override
     public void setMainApp(Main mainApp) {
@@ -25,16 +31,27 @@ public class MainViewController implements ControllerViewInterface {
 
     @FXML
     public void initialize() {
-        bienvenidoLabel.setText("Bienvenido ");
-        logoutButton.setOnAction(e -> cerrarSesion());
+        bienvenidoLabel.setText("Bienvenido " + username + "!");
+        rolLabel.setText("Rol: " + userRol);
+
+        buttonActions();
+
+
         LocalDate localDate = LocalDate.now();
         LocalDateTime localDateTime = LocalDateTime.now();
     }
 
     @FXML
-    private void cerrarSesion() {
-        mainApp.showView("LoginView"); // Regresar a la vista de login
+    private void buttonActions() {
+        logoutButton.setOnAction(e -> MainManagement.showView(mainApp, "LoginView"));
+        settingsButton.setOnAction(e -> MainManagement.showView(mainApp, "SettingsView"));
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public void setUserRol(String userRol) {
+        this.userRol = userRol;
+    }
 }
