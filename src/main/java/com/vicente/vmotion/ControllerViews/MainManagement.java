@@ -61,4 +61,21 @@ public class MainManagement {
             System.out.println("No hay conexión establecida. No se pueden enviar datos.");
         }
     }
+
+    public static void showView(Main main, String viewName) {
+        try {
+            System.out.println(main.getClass().getResource("Views/" + viewName + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(main.getClass().getResource("Views/" + viewName + ".fxml"));
+            Parent view = loader.load();
+
+            // Obtener el controlador y pasarle la referencia a la clase Main
+            Object controller = loader.getController();
+            ((ControllerViewInterface) controller).setMainApp(main);
+
+            // Cambiar la vista al nuevo nodo
+            main.root.getChildren().setAll(view);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
