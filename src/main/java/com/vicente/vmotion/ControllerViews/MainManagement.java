@@ -22,7 +22,7 @@ public class MainManagement {
     private static PrintWriter salida;
 
     // Constructor privado para evitar instancias innecesarias
-    private MainManagement() {}
+    public MainManagement() {}
 
     public static boolean connectServer() {
         try {
@@ -56,10 +56,15 @@ public class MainManagement {
 
     public static void enviarDatos(Object o) {
         if (salida != null) {
+            System.out.println("o = " + o.toString());
             salida.println(o.toString()); // Convertir el objeto a String antes de enviarlo
         } else {
             System.out.println("No hay conexión establecida. No se pueden enviar datos.");
         }
+    }
+
+    public static Object recibirDatos() throws IOException {
+        return entrada.readLine();
     }
 
     public static void showView(Main main, String viewName) {

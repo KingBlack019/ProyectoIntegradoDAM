@@ -2,19 +2,13 @@ package com.vicente.vmotion;
 
 import com.vicente.vmotion.ControllerViews.LoginViewController;
 import com.vicente.vmotion.ControllerViews.MainManagement;
-import com.vicente.vmotion.Management.ControllerViewInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.io.InputStreamReader;
 import java.util.Objects;
 
 

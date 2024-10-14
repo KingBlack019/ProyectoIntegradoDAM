@@ -1,10 +1,7 @@
 package com.vicente.vmotion.ControllerViews;
 
 import com.vicente.vmotion.Main;
-import com.vicente.vmotion.Management.Comun;
 import com.vicente.vmotion.Management.ControllerViewInterface;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -69,6 +66,17 @@ public class LoginViewController implements ControllerViewInterface {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
+
+    @Override
+    public void enviarDatos(Object o) {
+
+    }
+
+    @Override
+    public Object recibirDatos() {
+        return null;
+    }
+
 
     private void setChoicheBox(){
         choiceBox.setItems(roleChoiceBox());

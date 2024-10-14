@@ -11,6 +11,7 @@ module com.vicente.vmotion {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.net.http;
+    requires java.desktop;
 
     opens com.vicente.vmotion.ControllerViews to javafx.fxml;
     exports com.vicente.vmotion;

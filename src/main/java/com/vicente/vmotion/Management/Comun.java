@@ -26,4 +26,8 @@ public class Comun {
     public static void ButtonLoginStyle(Button button){
         // TODO METER EL MOUSTE ENTERED Y EXITED CON SUS DISEÑOS
     }
+
+    public static boolean mismoTexto(String txt1, String txt2){
+        return txt1.compareTo(txt2) == 0;
+    }
 }

@@ -13,4 +13,16 @@ public class SettingsViewController implements ControllerViewInterface {
     public void setMainApp(Main app) {
         this.mainApp = app;
     }
+
+    @Override
+    public void enviarDatos(Object o) {
+
+    }
+
+    @Override
+    public Object recibirDatos() {
+        return null;
+    }
+
+
 }

@@ -29,6 +29,16 @@ public class MainViewController implements ControllerViewInterface {
         this.mainApp = mainApp;
     }
 
+    @Override
+    public void enviarDatos(Object o) {
+
+    }
+
+    @Override
+    public Object recibirDatos() {
+        return null;
+    }
+
     @FXML
     public void initialize() {
         bienvenidoLabel.setText("Bienvenido " + username + "!");

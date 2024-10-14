@@ -55,7 +55,7 @@
                <Insets left="25.0" />
             </VBox.margin>
          </Label>
-         <PasswordField fx:id="repeatContrasenaField1" prefHeight="27.0" prefWidth="680.0" style="-fx-border-color: black; -fx-font-size: 28;" />
+         <PasswordField fx:id="repeatContrasenaField" prefHeight="27.0" prefWidth="680.0" style="-fx-border-color: black; -fx-font-size: 28;" />
          <HBox alignment="CENTER" prefHeight="58.0" prefWidth="763.0">
             <children>
                <Label style="-fx-font-size: 30;" text="Introduce tu rol">
