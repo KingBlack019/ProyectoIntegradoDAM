@@ -1,30 +1,41 @@
 package com.vicente.vmotion.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Usuarios {
-    private String idUsuario;
+public class Usuarios implements Serializable {
     private String nombre;
+    private String primerApellido;
+    private String segundoApellido;
     private String contrasena;
     private String email;
-    private Date fechaRegistro;
+    private String fechaRegistro;
 
     public Usuarios() {}
 
-    public Usuarios(String idUsuario, String nombre, String contrasena, String email, Date fechaRegistro) {
-        this.idUsuario = idUsuario;
+    public Usuarios( String nombre, String primerApellido, String segundoApellido, String contrasena, String email, String fechaRegistro) {
         this.nombre = nombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.contrasena = contrasena;
         this.email = email;
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public String getPrimerApellido() {
+        return primerApellido;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getNombre() {
@@ -51,11 +62,11 @@ public class Usuarios {
         this.email = email;
     }
 
-    public Date getFechaRegistro() {
+    public String getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }

@@ -1,8 +1,10 @@
 package com.vicente.vmotion.ControllerViews;
 
 import com.vicente.vmotion.Main;
+import com.vicente.vmotion.Management.Comun;
 import com.vicente.vmotion.Management.ControllerViewInterface;
 import com.vicente.vmotion.Management.Ordenes;
+import com.vicente.vmotion.Model.Usuarios;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -16,13 +18,13 @@ public class RegisterViewController implements ControllerViewInterface {
 
     @FXML
     public PasswordField contrasenaField;
-    @FXML
     public TextField usuarioField;
-    @FXML
     public Button crearButton;
-    @FXML
     public ChoiceBox choiceBox;
     public PasswordField repeatContrasenaField;
+    public TextField primerApellidoField;
+    public TextField segundoApellidoField;
+    public TextField emailField;
 
     private Main mainApp;
 
@@ -41,15 +43,19 @@ public class RegisterViewController implements ControllerViewInterface {
     private void comprobarRegistro() {
         // TODO TENEMOS QUE COMPROBAR CADA UNO DE LOS REGISTROS, SE HA ESCRITO USUARIO, LAS CONTRASEÑAS COINCIDEN Y SI YA E EN BD
         // 1.- E usuario
-        enviarDatos(Ordenes.REGISTRAR.toString());
+        enviarDatos(Ordenes.REGISTRAR.toString()); // ENVIAR ORDEN
+        enviarDatos(usuarioField.getText()); // ENVIAR USUARIO
+
         String resultado = recibirDatos().toString();
-        // System.out.println("resultado = " + resultado);
+        if ( Boolean.parseBoolean(resultado)){
 
-        if ( Boolean.parseBoolean(resultado) && comprobarUsuario() && comprobarContrasena()){
-
-
+            // Enviar 7 STRINGS
             enviarDatos( usuarioField.getText() );
             enviarDatos( contrasenaField.getText() );
+            enviarDatos( primerApellidoField.getText() );
+            enviarDatos( segundoApellidoField.getText() );
+            enviarDatos( emailField.getText() );
+            enviarDatos( Comun.getFechaActual() );
             enviarDatos( choiceBox.getValue().toString() );
         } else {
             mostrarMensaje("Error creando el usuario");
@@ -64,9 +70,11 @@ public class RegisterViewController implements ControllerViewInterface {
 
     // Retorna si el texto de las contraseñasField son las mismas
     private Boolean comprobarContrasena() {
+        System.out.println("COMPROBARCONTRASENA");
         return !mismoTexto(contrasenaField.getText(), repeatContrasenaField.getText());
     }
     private Boolean comprobarUsuario() {
+        System.out.println("COMPROBARUSUARIO");
         enviarDatos(Ordenes.EXISTEUSER); // 1- STRING
         enviarDatos(usuarioField.getText()); // 2- STRING
         return Boolean.parseBoolean(recibirDatos().toString()); // 3- BOOLEAN
