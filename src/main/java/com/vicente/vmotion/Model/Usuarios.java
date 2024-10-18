@@ -69,4 +69,17 @@ public class Usuarios implements Serializable {
     public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
+    public String crearCadena(Usuarios usuario){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(usuario.getNombre()).append(";")
+                .append(usuario.getPrimerApellido()).append(";")
+                .append(usuario.getSegundoApellido()).append(";")
+                .append(usuario.getContrasena()).append(";")
+                .append(usuario.getEmail()).append(";")
+                .append(usuario.getFechaRegistro());
+
+        return sb.toString();
+    }
 }

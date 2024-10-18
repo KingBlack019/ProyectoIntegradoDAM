@@ -57,7 +57,7 @@ public class MainManagement {
     public static void enviarDatos(Object o) {
         if (salida != null) {
             System.out.println("o = " + o.toString());
-            salida.println(o.toString()); // Convertir el objeto a String antes de enviarlo
+            salida.println(o); // Convertir el objeto a String antes de enviarlo
         } else {
             System.out.println("No hay conexión establecida. No se pueden enviar datos.");
         }
@@ -83,4 +83,5 @@ public class MainManagement {
             e.printStackTrace();
         }
     }
+
 }

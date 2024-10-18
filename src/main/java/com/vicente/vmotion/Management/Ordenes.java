@@ -1,10 +1,10 @@
 package com.vicente.vmotion.Management;
 
 public enum Ordenes {
-    REGISTRAR,
-    LOGUEAR,
+    CREAR_USUARIO,
+    LOGUEAR_USUARIO,
     CHATS,
     ACTIVIDADES,
-    EXISTE,
-    EXISTEUSER, SUSCRIBIRSE
+    SUSCRIBIRSE,
+    EXISTE_USUARIO
 }

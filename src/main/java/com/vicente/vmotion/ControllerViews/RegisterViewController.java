@@ -29,7 +29,7 @@ public class RegisterViewController implements ControllerViewInterface {
     private Main mainApp;
 
     @FXML
-    private void initialize(){
+    private void initialize() {
 
         crearButton.setOnAction(e -> comprobarRegistro());
         setChoiceBox();
@@ -43,26 +43,32 @@ public class RegisterViewController implements ControllerViewInterface {
     private void comprobarRegistro() {
         // TODO TENEMOS QUE COMPROBAR CADA UNO DE LOS REGISTROS, SE HA ESCRITO USUARIO, LAS CONTRASEÑAS COINCIDEN Y SI YA E EN BD
         // 1.- E usuario
-        enviarDatos(Ordenes.REGISTRAR.toString()); // ENVIAR ORDEN
-        enviarDatos(usuarioField.getText()); // ENVIAR USUARIO
+        Usuarios userPrueba = new Usuarios("r", "r", "r", "r", "r", Comun.getFechaActual());
 
+        enviarDatos(Ordenes.EXISTE_USUARIO.toString());
+        enviarDatos(userPrueba.getNombre());
+
+        // enviarDatos(usuarioField.getText()); // ENVIAR USUARIO
         String resultado = recibirDatos().toString();
-        if ( Boolean.parseBoolean(resultado)){
+        if (Boolean.parseBoolean(resultado)) {
 
-            // Enviar 7 STRINGS
-            enviarDatos( usuarioField.getText() );
-            enviarDatos( contrasenaField.getText() );
-            enviarDatos( primerApellidoField.getText() );
-            enviarDatos( segundoApellidoField.getText() );
-            enviarDatos( emailField.getText() );
-            enviarDatos( Comun.getFechaActual() );
-            enviarDatos( choiceBox.getValue().toString() );
+            enviarDatos(Ordenes.CREAR_USUARIO.toString()); // ENVIAR ORDEN
+            // todo se le envia datos para ver si existe usuario por lo tanto el comando primero es si existe dicho usuario
+
+
+            Usuarios usuario = new Usuarios();
+            Usuarios usuarioRegister = new Usuarios(usuarioField.getText(), primerApellidoField.getText(), segundoApellidoField.getText(),
+                    contrasenaField.getText(), emailField.getText(), Comun.getFechaActual());
+            String cadena = usuario.crearCadena(userPrueba);
+
+            enviarDatos(cadena);
+            enviarDatos(choiceBox.getValue().toString());
         } else {
             mostrarMensaje("Error creando el usuario");
         }
     }
 
-    private void mostrarMensaje(String mensaje){
+    private void mostrarMensaje(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(mensaje);
         alert.showAndWait();
@@ -73,13 +79,13 @@ public class RegisterViewController implements ControllerViewInterface {
         System.out.println("COMPROBARCONTRASENA");
         return !mismoTexto(contrasenaField.getText(), repeatContrasenaField.getText());
     }
+
     private Boolean comprobarUsuario() {
         System.out.println("COMPROBARUSUARIO");
-        enviarDatos(Ordenes.EXISTEUSER); // 1- STRING
+        enviarDatos(Ordenes.EXISTE_USUARIO); // 1- STRING
         enviarDatos(usuarioField.getText()); // 2- STRING
         return Boolean.parseBoolean(recibirDatos().toString()); // 3- BOOLEAN
     }
-
 
 
     @Override
@@ -96,9 +102,11 @@ public class RegisterViewController implements ControllerViewInterface {
     public Object recibirDatos() {
         try {
             return MainManagement.recibirDatos();
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return null;
         }
     }
+
+
 }
